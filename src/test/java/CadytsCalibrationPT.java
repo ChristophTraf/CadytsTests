@@ -102,15 +102,14 @@ public class CadytsCalibrationPT {
 
         addCadytsParams(scenario);
 
-
-
-
-
         controler.addOverridingModule(new CadytsCarModule());
+        controler.addOverridingModule(new CadytsPtModule());
         // include cadyts into the plan scoring (this will add the cadyts corrections to the scores):
         controler.setScoringFunctionFactory(new ScoringFunctionFactory() {
             @Inject CadytsContext cadytsContext;
             @Inject ScoringParametersForPerson parameters;
+            @Inject
+            CadytsPtContext cContextPT;
             @Override
             public ScoringFunction createNewScoringFunction(Person person) {
                 final ScoringParameters params = parameters.getScoringParameters(person);
@@ -121,46 +120,13 @@ public class CadytsCalibrationPT {
                 scoringFunctionAccumulator.addScoringFunction(new CharyparNagelAgentStuckScoring(params));
 
                 final CadytsScoring<Link> scoringFunction = new CadytsScoring<>(person.getSelectedPlan(), config, cadytsContext);
+                final CadytsScoring<TransitStopFacility> scoringFunctionPT = new CadytsScoring<>(person.getSelectedPlan(), config, cContextPT);
                 scoringFunction.setWeightOfCadytsCorrection(30. * config.planCalcScore().getBrainExpBeta()) ;
                 scoringFunctionAccumulator.addScoringFunction(scoringFunction );
 
                 return scoringFunctionAccumulator;
             }
         }) ;
-
-
-
-
-        controler.addOverridingModule(new CadytsPtModule());
-        controler.setScoringFunctionFactory(new ScoringFunctionFactory() {
-            @Inject
-            ScoringParametersForPerson parameters;
-            @Inject
-            Network network;
-            @Inject
-            CadytsPtContext cContextPT;
-
-            @Override
-            public ScoringFunction createNewScoringFunction(Person person) {
-                final ScoringParameters params = parameters.getScoringParameters(person);
-
-                SumScoringFunction scoringFunctionAccumulator = new SumScoringFunction();
-                scoringFunctionAccumulator.addScoringFunction(new CharyparNagelLegScoring(params, network));
-                scoringFunctionAccumulator.addScoringFunction(new CharyparNagelActivityScoring(params)) ;
-                scoringFunctionAccumulator.addScoringFunction(new CharyparNagelAgentStuckScoring(params));
-
-                final CadytsScoring<TransitStopFacility> scoringFunctionPT = new CadytsScoring<>(person.getSelectedPlan(), config, cContextPT);
-
-                scoringFunctionPT.setWeightOfCadytsCorrection(beta*30.) ;
-                scoringFunctionAccumulator.addScoringFunction(scoringFunctionPT);
-
-                return scoringFunctionAccumulator;
-            }
-        });
-
-
-
-
 
         Analysis.run(controler);
     }
