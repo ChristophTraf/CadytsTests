@@ -87,7 +87,7 @@ public class CadytsCalibrationPT {
         final double beta=30.;
 
         String[] args = new String[3];
-        args[0] = "input\\config_chsc_austria.xml";
+        args[0] = "input\\Cadyts\\config.xml";
         args[1] = "7";
         args[2] = "4";
 
