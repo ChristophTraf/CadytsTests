@@ -128,6 +128,14 @@
         <param name="writeSnapshotsInterval" value="&writeSnapshotsInterval;"/>
     </module>
 
+    <module name="global" >
+        <param name="coordinateSystem" value="Atlantis" />
+        <param name="insistingOnDeprecatedConfigVersion" value="true" />
+        <!-- "global" number of threads.  This number is used, e.g., for replanning, but NOT in the mobsim.  This can typically be set to as many cores as you have available, or possibly even slightly more. -->
+        <param name="numberOfThreads" value="2" />
+        <param name="randomSeed" value="4711" />
+    </module>
+
     <!-- ====================================================================== -->
 
     <module name="counts">
@@ -351,7 +359,19 @@
         </parameterset>
 
         <parameterset type="activityParams">
+            <param name="activityType" value="h"/>
+            <param name="minimalDuration" value="00:05:00" />
+            <param name="typicalDuration" value="08:00:00"/>
+        </parameterset>
+
+        <parameterset type="activityParams">
             <param name="activityType" value="A"/>
+            <param name="minimalDuration" value="00:05:00" />
+            <param name="typicalDuration" value="04:00:00"/>
+        </parameterset>
+
+        <parameterset type="activityParams">
+            <param name="activityType" value="w"/>
             <param name="minimalDuration" value="00:05:00" />
             <param name="typicalDuration" value="04:00:00"/>
         </parameterset>

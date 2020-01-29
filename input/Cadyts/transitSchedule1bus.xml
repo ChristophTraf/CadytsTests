@@ -18,8 +18,8 @@
 			<transportMode>pt</transportMode>
 			<routeProfile>
 				<stop refId="stop1" departureOffset="00:00:00" />
-				<stop refId="stop2" arrivalOffset="00:05:00" />
-				<stop refId="stop12" arrivalOffset="00:10:00" />
+				<stop refId="stop2" arrivalOffset="00:05:00" departureOffset="00:05:00" />
+				<stop refId="stop12" arrivalOffset="00:10:00" departureOffset="00:10:00" />
 			</routeProfile>
 			
 			<route>
@@ -43,8 +43,8 @@
 			<transportMode>pt</transportMode>
 			<routeProfile>
 				<stop refId="stop1" departureOffset="00:00:00" />
-				<stop refId="stop10" arrivalOffset="00:05:00" />
-				<stop refId="stop12" arrivalOffset="00:10:00" />
+				<stop refId="stop10" arrivalOffset="00:05:00" departureOffset="00:05:00"/>
+				<stop refId="stop12" arrivalOffset="00:10:00" departureOffset="00:10:00"/>
 			</routeProfile>
 
 			<route>
