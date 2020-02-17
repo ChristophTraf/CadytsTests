@@ -8,9 +8,9 @@ import org.matsim.api.core.v01.population.Person;
 import org.matsim.api.core.v01.population.PlanElement;
 import org.matsim.api.core.v01.population.Route;
 import org.matsim.core.population.routes.GenericRouteImpl;
-import org.matsim.core.router.EmptyStageActivityTypes;
+//import org.matsim.core.router.EmptyStageActivityTypes;
 import org.matsim.core.router.RoutingModule;
-import org.matsim.core.router.StageActivityTypes;
+//import org.matsim.core.router.StageActivityTypes;
 import org.matsim.facilities.Facility;
 
 import javax.inject.Named;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkenRoutingModule implements RoutingModule {
-		private final StageActivityTypes stageTypes = EmptyStageActivityTypes.INSTANCE;
+//		private final StageActivityTypes stageTypes = EmptyStageActivityTypes.INSTANCE;
 		
 		public final RoutingModule carRouting;
 		public final RoutingModule ptRouting;
@@ -143,13 +143,13 @@ public class ParkenRoutingModule implements RoutingModule {
 			return (List<PlanElement>) trip;
 		}
 
-		/***************************************************************************/
-		@Override
-		public StageActivityTypes getStageActivityTypes() 
-		/***************************************************************************/
-		{
-			return stageTypes;
-		}
+//		/***************************************************************************/
+//		@Override
+//		public StageActivityTypes getStageActivityTypes()
+//		/***************************************************************************/
+//		{
+//			return stageTypes;
+//		}
 		
 	                      
 	}

@@ -93,7 +93,7 @@ public class CadytsCalibration {
         cadytsPtConfig.addParam(CadytsConfigGroup.MIN_FLOW_STDDEV, "8");
         cadytsPtConfig.addParam(CadytsConfigGroup.PREPARATORY_ITERATIONS, "1");
         cadytsPtConfig.addParam(CadytsConfigGroup.TIME_BIN_SIZE, "3600");
-        cadytsPtConfig.addParam(CadytsConfigGroup.CALIBRATED_LINES, calibrated_linkIds.toString());
+//        cadytsPtConfig.addParam(CadytsConfigGroup.CALIBRATED_LINES, calibrated_linkIds.toString());
 
         CadytsConfigGroup ccc = new CadytsConfigGroup() ;
         scenario.getConfig().addModule(ccc) ;

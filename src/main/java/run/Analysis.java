@@ -71,7 +71,7 @@ public class Analysis {
                 QSimComponentsConfig provideQSimComponentsConfig() {
                     QSimComponentsConfig components = new QSimComponentsConfig();
                     (new StandardQSimComponentConfigurator(config)).configure(components);
-                    SBBTransitEngineQSimModule.configure(components);
+//                    SBBTransitEngineQSimModule.configure(components);
                     return components;
                 }
             });

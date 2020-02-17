@@ -12,6 +12,7 @@ import org.matsim.contrib.cadyts.pt.CadytsPtContext;
 import org.matsim.contrib.cadyts.pt.CadytsPtModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigGroup;
+import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.groups.StrategyConfigGroup;
 import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
@@ -87,7 +88,7 @@ public class CadytsCalibrationPT {
         final double beta=30.;
 
         String[] args = new String[3];
-        args[0] = "input\\Cadyts\\config.xml";
+        args[0] = "input/Cadyts/config.xml";
         args[1] = "7";
         args[2] = "4";
 
@@ -97,6 +98,9 @@ public class CadytsCalibrationPT {
         Set<String> simplifierIdgnoreModes = new HashSet<>();
 
         Config config = Analysis.getConfig(args);
+
+        config.global().setNumberOfThreads( 1 );
+
         Scenario scenario = Analysis.getScenario(config, simplifyNetwork, simplifierIdgnoreModes);
         Controler controler = Analysis.getControler(config, scenario, useRailRaptor, useParking);
 
@@ -182,7 +186,8 @@ public class CadytsCalibrationPT {
     }
 
     private void addCadytsParams(Scenario scenario) {
-        ConfigGroup cadytsPtConfig = scenario.getConfig().createModule(CadytsConfigGroup.GROUP_NAME );
+//        ConfigGroup cadytsPtConfig = scenario.getConfig().createModule(CadytsConfigGroup.GROUP_NAME );
+        CadytsConfigGroup cadytsPtConfig = ConfigUtils.addOrGetModule( scenario.getConfig(), CadytsConfigGroup.class );
 
         StringBuilder calibrated_lines = new StringBuilder();
         for (TransitLine transitLine : scenario.getTransitSchedule().getTransitLines().values()) {
@@ -193,8 +198,10 @@ public class CadytsCalibrationPT {
         }
         calibrated_lines.delete(calibrated_lines.length() - 2, calibrated_lines.length());
 
-        cadytsPtConfig.addParam(CadytsConfigGroup.START_TIME, "00:00:00");
-        cadytsPtConfig.addParam(CadytsConfigGroup.END_TIME, "30:00:00" );
+//        cadytsPtConfig.addParam(CadytsConfigGroup.START_TIME, "00:00:00");
+        cadytsPtConfig.setStartTime( 0 );
+//        cadytsPtConfig.addParam(CadytsConfigGroup.END_TIME, "30:00:00" );
+        cadytsPtConfig.setEndTime( 30*3600 );
         cadytsPtConfig.addParam(CadytsConfigGroup.REGRESSION_INERTIA, "0.95");
         cadytsPtConfig.addParam(CadytsConfigGroup.USE_BRUTE_FORCE, "true");
         cadytsPtConfig.addParam(CadytsConfigGroup.MIN_FLOW_STDDEV, "8");
@@ -202,8 +209,11 @@ public class CadytsCalibrationPT {
         cadytsPtConfig.addParam(CadytsConfigGroup.TIME_BIN_SIZE, "3600");
         cadytsPtConfig.addParam(CadytsConfigGroup.CALIBRATED_LINES, calibrated_lines.toString());
 
-        CadytsConfigGroup ccc = new CadytsConfigGroup() ;
-        scenario.getConfig().addModule(ccc) ;
+        // note that the values set above will be "global", i.e. the same for cadyts4car.  Only the "calibratedLines" are now different; the corresponding
+        // element is called "calibratedLinks" for cadyts4car.  kai, feb'20
+
+//        CadytsConfigGroup ccc = new CadytsConfigGroup() ;
+//        scenario.getConfig().addModule(ccc) ;
 
     }
 

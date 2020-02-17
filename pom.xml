@@ -31,13 +31,14 @@
         <dependency>
             <groupId>org.matsim</groupId>
             <artifactId>matsim</artifactId>
-            <version>11.0</version>
+            <version>${matsim.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.SchweizerischeBundesbahnen</groupId>
             <artifactId>matsim-sbb-extensions</artifactId>
             <version>11.4</version>
         </dependency>
+<!--        (not needed with matsim-12-snapshot. kai, feb'20)-->
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
@@ -54,7 +55,7 @@
         <dependency>
             <groupId>org.matsim.contrib</groupId>
             <artifactId>cadytsIntegration</artifactId>
-            <version>11.0</version>
+            <version>${matsim.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -76,6 +77,8 @@
         <!-- necessary for intellij to function -->
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
+        <matsim.version>12.0-SNAPSHOT</matsim.version>
     </properties>
 
 </project>
