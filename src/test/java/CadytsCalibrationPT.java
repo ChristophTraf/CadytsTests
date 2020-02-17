@@ -13,6 +13,7 @@ import org.matsim.contrib.cadyts.pt.CadytsPtModule;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigGroup;
 import org.matsim.core.config.ConfigUtils;
+import org.matsim.core.config.groups.FacilitiesConfigGroup;
 import org.matsim.core.config.groups.StrategyConfigGroup;
 import org.matsim.core.controler.AbstractModule;
 import org.matsim.core.controler.Controler;
@@ -100,6 +101,7 @@ public class CadytsCalibrationPT {
         Config config = Analysis.getConfig(args);
 
         config.global().setNumberOfThreads( 1 );
+        config.facilities().setFacilitiesSource( FacilitiesConfigGroup.FacilitiesSource.onePerActivityLinkInPlansFile );
 
         Scenario scenario = Analysis.getScenario(config, simplifyNetwork, simplifierIdgnoreModes);
         Controler controler = Analysis.getControler(config, scenario, useRailRaptor, useParking);
