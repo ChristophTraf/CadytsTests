@@ -37,7 +37,7 @@
                 <!ENTITY numberOfThreads_global "7" >
                 <!ENTITY numberOfThreads_parallel "null" >
 
-                <!ENTITY countsFile "countsCar/counts5.xml" >
+                <!ENTITY countsFile "D:/Projekte_PV/chsc/IntelliJ_Projects/CadytsTests.git/input/Cadyts/countsCar/counts5.xml" >
                 <!ENTITY countsScaleFactor "7.0" >
 
                 <!ENTITY inputAlightCountsFile "input/Cadyts/countsPT/counts_alighting.xml" >
@@ -75,6 +75,27 @@
         <param name="ignoreCarAvailability" value="true"/>
         <param name="modes" value="&changeModes;"/>
     </module>
+
+    <!-- ====================================================================== -->
+
+    <module name="cadytsCar" >
+        <param name="calibratedLines" value="M43, M44" />
+        <param name="calibratedLinks" value="11,12,13,14,15,16,17,18,19,21" />
+        <!-- The last second of the day to be used for calibration.  hh:mm:ss format -->
+        <param name="endTime" value="86399" />
+        <param name="freezeIteration" value="2147483647" />
+        <param name="minFlowStddevVehH" value="25.0" />
+        <param name="preparatoryIterations" value="1" />
+        <param name="regressionInertia" value="0.95" />
+        <!-- The first second of the day to be used for calibration.  hh:mm:ss format -->
+        <param name="startTime" value="0" />
+        <!-- Length of time bin for which counts are aggregated.  IN SECONDS!!!!  Default is 3600. -->
+        <param name="timeBinSize" value="3600" />
+        <param name="useBruteForce" value="false" />
+        <param name="varianceScale" value="1.0" />
+        <param name="writeAnalysisFile" value="true" />
+    </module>
+
 
     <!-- ====================================================================== -->
 
